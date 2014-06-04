@@ -38,7 +38,7 @@ Open your `composer.json` file and add the following to the `require` key:
 >All issues with compatibility for Laravel 4.1 and 4.0 have been resolved.
 >You can still use one of the two tagged versions if you'd like.
 
-After adding the key, run composer update from the command line to install the package 
+After adding the key, run composer update from the command line to install the package
 
 ```bash
 composer update
@@ -50,7 +50,7 @@ Add the service provider to the `providers` array in your `app/config/app.php` f
 
 ## Configuration ##
 Before you can start using the package we need to set some configurations.
-To do so you must first publish the config file, you can do this with the following `artisan` command. 
+To do so you must first publish the config file, you can do this with the following `artisan` command.
 
 ```bash
 php artisan config:publish bogardo/mailgun
@@ -81,7 +81,7 @@ You can specify the type of body like so:
 Mailgun::send(array('html' => 'html.view', 'text' => 'text.view'), $data, $callback);
 ```
 
-If you have a `html` body as well as a `text` body then you don't need to specify the type, you can just pass an array where the first item is the `html` view and the second item the `text` view. 
+If you have a `html` body as well as a `text` body then you don't need to specify the type, you can just pass an array where the first item is the `html` view and the second item the `text` view.
 
 ```php
 Mailgun::send(array('html.view','text.view'), $data, $callback);
@@ -98,7 +98,7 @@ When only sending a `text` body, just must pass an array and specify the type.
 ```php
 Mailgun::send(array('text' => 'text.view'), $data, $callback);
 ```
- 
+
 ### Data ###
 
 The second argument passed to the `send` method is the `$data` `array` that is passed to the view.
@@ -109,7 +109,7 @@ You can access the values from the `$data` array as variables using the array ke
 
 Example:
 
-```php	
+```php
 $data = array(
 	'customer' => 'John Smith',
 	'url' => 'http://laravel.com'
@@ -143,7 +143,7 @@ You can specify the mail options within the closure.
 
 ##### Recipients #####
 The recipient methods all accept two arguments: `email` and `name` where the `name` field is optional.
- 
+
 
 The `to` method
 ```php
@@ -193,7 +193,7 @@ Mailgun::send('emails.welcome', $data, function($message) use ($users)
 		$message->to($user->email, $user->name);
 	}
 });
-``` 
+```
 - Give the strings in the `array` the correct format for including names: `'name' <email>`
 ```php
 array(
@@ -212,7 +212,7 @@ $message->from('foo@example.com', 'Recipient Name');
 
 #without name
 $message->from('foo@example.com');
-``` 
+```
 
 ##### Subject #####
 Setting the email subject
@@ -261,7 +261,7 @@ Mailgun::send('emails.welcome', $data, function($message)
 
 ### Embedding Inline Images ###
 Embedding inline images into your e-mails is very easy.
-In your view you can use the `embed` method and pass it the path to the file. This will return a CID (Content-ID) which will be used as the `source` for the image. You can add multiple inline images to your message. 
+In your view you can use the `embed` method and pass it the path to the file. This will return a CID (Content-ID) which will be used as the `source` for the image. You can add multiple inline images to your message.
 > **Since mailgun-php 1.6, the ability to rename attachments has been added due to the upgrade to guzzle 1.8**
 
 The `embed` method accepts 2 arguments:
@@ -313,7 +313,7 @@ The `later` method works the same as the (default) `send` method but it accepts 
 The extra argument is the amount of seconds (minutes, hours or days) from now the message should be send.
 > **If the specified time exceeds the 3 day limit it will set the delivery time to the maximum of 3 days.**
 
-To send an email in 10 seconds from now you can do the following: 
+To send an email in 10 seconds from now you can do the following:
 ```php
 Mailgun::later(10, 'emails.welcome', $data, function($message)
 {
@@ -331,7 +331,7 @@ Mailgun::later(array('hours' => 5), 'emails.welcome', $data, function($message)
 ```
 
 > When scheduling messages, make sure you've set the correct timezone in your `app/config/app.php` file.
-> 
+>
 
 ### Tagging ###
 Sometimes it’s helpful to categorize your outgoing email traffic based on some criteria, perhaps for separate signup emails, password recovery emails or for user comments. Mailgun lets you tag each outgoing message with a custom tag. When you access the _Tracking_ page  within the Mailgun control panel, they will be aggregated by these tags.
@@ -341,7 +341,7 @@ Sometimes it’s helpful to categorize your outgoing email traffic based on some
 
 To add a Tag to your email you can use the `tag` method.
 
-You can add a single tag to an email by providing a `string`. 
+You can add a single tag to an email by providing a `string`.
 
 ```php
 Mailgun::send('emails.welcome', $data, function($message)
@@ -379,7 +379,7 @@ Mailgun::send('emails.welcome', $data, function($message)
 ```
 
 ### Catch all ###
-You can setup a catch-all address in the configuration file `catch_all`. 
+You can setup a catch-all address in the configuration file `catch_all`.
 When enabled, all email addresses will be replaced by the catch-all address specified in the configuration file.
 This is useful for testing purposes.
 
@@ -389,7 +389,7 @@ See the [Mailgun Documentation](http://documentation.mailgun.com/user_manual.htm
 
 To add custom data to a message you can use the `data` method.
 This method takes two parameters `key` and `value`.
-The `value` parameter will be json encoded 
+The `value` parameter will be json encoded
 
 ```php
 Mailgun::send('emails.welcome', $data, function($message)
@@ -417,11 +417,11 @@ The `validate` method returns the following object:
 stdClass Object
 (
     [address] => foo@bar.com
-    [did_you_mean] => 
+    [did_you_mean] =>
     [is_valid] => 1
     [parts] => stdClass Object
         (
-            [display_name] => 
+            [display_name] =>
             [domain] => bar.com
             [local_part] => foo
         )
@@ -442,7 +442,7 @@ stdClass Object
     [is_valid] => 1
     [parts] => stdClass Object
         (
-            [display_name] => 
+            [display_name] =>
             [domain] => gmil.com
             [local_part] => foo
         )
@@ -515,3 +515,7 @@ stdClass Object
 
 <br />
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Bogardo/mailgun/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
+
+
+test
