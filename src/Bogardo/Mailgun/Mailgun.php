@@ -50,7 +50,7 @@ class Mailgun
 	 *
 	 * @return \Bogardo\Mailgun\Mailgun
 	 */
-	public function __construct(Environment $views)
+	public function __construct(Factory $views)
 	{
 		$this->views = $views;
 	}
