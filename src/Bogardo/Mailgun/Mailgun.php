@@ -2,7 +2,7 @@
 
 use Closure;
 use Mailgun\Mailgun as Mg;
-use Illuminate\View\Environment;
+use Illuminate\View\Factory;
 use Illuminate\Support\Facades\Config;
 
 class Mailgun
@@ -11,7 +11,7 @@ class Mailgun
 	/**
 	 * The view environment instance.
 	 *
-	 * @var \Illuminate\View\Environment
+	 * @var \Illuminate\View\Factory
 	 */
 	protected $views;
 
@@ -46,7 +46,7 @@ class Mailgun
 	/**
 	 * Create a new Mailer instance.
 	 *
-	 * @param  \Illuminate\View\Environment $views
+	 * @param  \Illuminate\View\Factory $views
 	 *
 	 * @return \Bogardo\Mailgun\Mailgun
 	 */
